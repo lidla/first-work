@@ -3,7 +3,7 @@ name: Ripple Data
 on:
   schedule:
     # Запуск о 35-й хвилині кожні 4 години (00:35, 04:35 і т.д.)
-    - cron: '44 */3 * * *'
+    - cron: '44 */4 * * *'
   workflow_dispatch:
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
       - name: Fetch XRP Price
         run: |
           # 1. Рандомна затримка (до 15 хвилин)
-          sleep $((RANDOM % 900))
+          sleep $((RANDOM % 950))
           
           TIMESTAMP=$(date "+%Y-%m-%d %H:%M")
 
@@ -43,7 +43,7 @@ jobs:
           echo "$(tail -n 44 $FILE_NAME)" > $FILE_NAME
 
           # 6. Пуш
-          git config --local user.email "action@github.com"
+          git config --local user.email "mvoron322@gmail.com"
           git config --local user.name "GitHub Action Bot"
           git add $FILE_NAME
           git commit -m "$COMMIT_MSG"
